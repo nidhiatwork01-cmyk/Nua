@@ -5,8 +5,9 @@ export const LOCAL_STORAGE_CART_KEY = 'aura_cart_items';
 
 const getEnvKey = (): string | undefined => {
   try {
-    // Check Webpack/CRA environment
-    return (process.env.REACT_APP_RAZORPAY_KEY || process.env.REACT_APP_RAZORPAY_KEY_ID);
+    // Check Webpack/CRA environment dynamically via globalThis to bypass TypeScript compile checks
+    const processRef = (globalThis as any).process;
+    return processRef?.env?.REACT_APP_RAZORPAY_KEY || processRef?.env?.REACT_APP_RAZORPAY_KEY_ID;
   } catch (e) {
     return undefined;
   }
