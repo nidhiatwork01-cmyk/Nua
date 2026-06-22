@@ -2,6 +2,8 @@
 
 A premium, high-fidelity D2C botanical skincare e-commerce storefront. Built with a focus on rich aesthetics, smooth animations, and robust real-world product engineering practices.
 
+**Live Demo:** [nua-eight-rosy.vercel.app](https://nua-eight-rosy.vercel.app/)
+
 ---
 
 ## ✦ Key Features
