@@ -1,0 +1,37 @@
+// Color Palette
+$color-primary: #ae2d46;
+$color-primary-container: #f7647a;
+$color-secondary: #006c52; // Nua teal
+$color-secondary-alt: #2E8B6E; // Teal variant
+$color-background: #FFF8F5; // Warm background
+$color-surface: #FCF9F8;
+$color-surface-dim: #DCD9D9;
+$color-surface-container: #F0EDED;
+$color-surface-container-low: #F6F3F2;
+$color-surface-container-high: #EAE7E7;
+$color-surface-container-lowest: #FFFFFF;
+$color-text: #1C1B1B;
+$color-text-variant: #584143;
+$color-outline: #8B7072;
+$color-outline-variant: #DFBFC0;
+
+// Typography
+$font-family-display: 'Playfair Display', Georgia, serif;
+$font-family-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+// Layout Spacing
+$spacing-xs: 4px;
+$spacing-sm: 12px;
+$spacing-md: 24px;
+$spacing-lg: 48px;
+$spacing-xl: 80px;
+$spacing-base: 8px;
+$spacing-gutter: 24px;
+$spacing-margin-mobile: 16px;
+$container-max-width: 1280px;
+
+// Shadows & Animations
+$shadow-hover: 0 10px 30px rgba(74, 58, 50, 0.06);
+$shadow-drawer: -10px 0 30px rgba(74, 58, 50, 0.08);
+$transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: all 0.5s ease;

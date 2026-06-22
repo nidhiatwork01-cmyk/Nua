@@ -1,0 +1,276 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(49, 48, 48, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 440px;
+  background-color: $color-surface-container-lowest;
+  box-shadow: $shadow-drawer;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+.header {
+  padding: $spacing-md;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba($color-outline-variant, 0.5);
+}
+
+.title {
+  font-family: $font-family-display;
+  font-size: 32px;
+  font-weight: 700;
+  color: $color-primary;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: $color-text-variant;
+  cursor: pointer;
+  padding: $spacing-xs;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition-default;
+
+  &:hover {
+    background-color: $color-surface-container-low;
+    color: $color-text;
+  }
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: $spacing-sm;
+  color: $color-text-variant;
+  padding: $spacing-lg 0;
+
+  .emptyIcon {
+    font-size: 48px;
+    color: $color-outline-variant;
+  }
+
+  .shopButton {
+    @include button-base;
+    margin-top: $spacing-sm;
+    padding: 10px 24px;
+    background-color: $color-primary;
+    color: white;
+    font-size: 14px;
+
+    &:hover {
+      background-color: lighten($color-primary, 5%);
+    }
+  }
+}
+
+.cartItem {
+  display: flex;
+  gap: $spacing-sm;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid rgba($color-outline-variant, 0.3);
+}
+
+.itemImageWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: $color-surface-container-low;
+  border: 1px solid rgba($color-outline-variant, 0.2);
+  flex-shrink: 0;
+}
+
+.itemImage {
+  width: 100%;
+  height: 100%;
+  object-cover: cover;
+}
+
+.itemDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemName {
+  font-family: $font-family-display;
+  font-size: 18px;
+  font-weight: 600;
+  color: $color-text;
+  line-height: 1.3;
+}
+
+.itemVariant {
+  font-size: 12px;
+  color: $color-text-variant;
+  margin-top: 2px;
+}
+
+.itemFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $spacing-xs;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.qtyControls {
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-outline-variant;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  background-color: $color-surface-container-lowest;
+  gap: 8px;
+}
+
+.qtyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-text-variant;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.qtyValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  color: $color-primary;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.footer {
+  padding: $spacing-md;
+  background-color: $color-surface-container-low;
+  border-top: 1px solid rgba($color-outline-variant, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: $color-text-variant;
+
+  &.total {
+    font-family: $font-family-display;
+    font-size: 20px;
+    font-weight: 700;
+    color: $color-text;
+    margin-top: $spacing-xs;
+  }
+
+  .freeText {
+    color: $color-secondary;
+    font-weight: 600;
+  }
+}
+
+.checkoutButton {
+  @include button-base;
+  width: 100%;
+  padding: 12px $spacing-md;
+  background-color: $color-secondary;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: $shadow-hover;
+
+  &:hover {
+    background-color: darken($color-secondary, 5%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.taxesNote {
+  font-size: 11px;
+  color: $color-text-variant;
+  text-align: center;
+  margin-top: 2px;
+}

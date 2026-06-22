@@ -1,0 +1,94 @@
+@import '../styles/variables';
+
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: $color-surface-container-low;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+.infoPlaceholder {
+  padding: 14px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.titleLine {
+  width: 70%;
+  height: 16px;
+  background-color: $color-surface-container;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+.priceLine {
+  width: 30%;
+  height: 14px;
+  background-color: $color-surface-container;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

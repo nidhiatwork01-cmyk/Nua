@@ -1,0 +1,169 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: $color-background;
+  border-bottom: 1px solid rgba($color-outline-variant, 0.5);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+
+  @media (min-width: 768px) {
+    height: 72px;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: $container-max-width;
+  padding: 0 $spacing-gutter;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  @media (max-width: 767px) {
+    padding: 0 $spacing-margin-mobile;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+.logo {
+  font-family: $font-family-display;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: $color-primary;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  justify-self: start;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+    letter-spacing: -0.02em;
+  }
+}
+
+.menuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: $color-primary;
+  cursor: pointer;
+  padding: $spacing-xs;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  justify-self: center;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+.navLink {
+  font-family: $font-family-body;
+  font-size: 15px;
+  color: $color-text-variant;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: $transition-default;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &.active {
+    color: $color-primary;
+    font-weight: 600;
+    border-bottom: 2px solid $color-primary;
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: end;
+
+  @media (max-width: 767px) {
+    gap: $spacing-sm;
+  }
+}
+
+.iconButton {
+  background: none;
+  border: none;
+  color: $color-text;
+  cursor: pointer;
+  padding: $spacing-xs;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: $transition-default;
+  border-radius: 50%;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: $color-primary-container;
+  color: white;
+  font-family: $font-family-body;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  animation: popBadge 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popBadge {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.spacer {
+  height: 64px;
+
+  @media (min-width: 768px) {
+    height: 72px;
+  }
+}

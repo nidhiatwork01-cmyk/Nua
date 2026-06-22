@@ -1,0 +1,70 @@
+@import 'variables';
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+// Layout helpers
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// UI Elements
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-body;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: $transition-default;
+  outline: none;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+@mixin font-display-large {
+  font-family: $font-family-display;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@mixin font-body-large {
+  font-family: $font-family-body;
+  font-size: 18px;
+  line-height: 1.5;
+}
