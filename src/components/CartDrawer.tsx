@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/formatPrice';
-import { RAZORPAY_KEY_ID } from '../data/constants';
+import { RAZORPAY_PUBLIC_KEY, RAZORPAY_SCRIPT_SRC } from '../data/constants';
 import styles from './CartDrawer.module.scss';
 
 // Dynamically load Razorpay SDK
@@ -12,7 +12,7 @@ const loadRazorpayScript = (): Promise<boolean> => {
       return;
     }
     const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.src = RAZORPAY_SCRIPT_SRC;
     script.onload = () => resolve(true);
     script.onerror = () => resolve(false);
     document.body.appendChild(script);
@@ -55,7 +55,7 @@ export const CartDrawer: React.FC = () => {
       const amountInPaise = Math.round(subtotal * 80 * 100);
 
       const options = {
-        key: RAZORPAY_KEY_ID,
+        key: RAZORPAY_PUBLIC_KEY,
         amount: amountInPaise,
         currency: "INR",
         name: "AURA Skincare",
