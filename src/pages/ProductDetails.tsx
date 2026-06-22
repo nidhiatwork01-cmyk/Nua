@@ -213,7 +213,7 @@ export const ProductDetails: React.FC = () => {
                   <span className={`material-symbols-outlined ${styles.accordionChevron}`}>expand_more</span>
                 </summary>
                 <div className={styles.accordionContent}>
-                  Complimentary standard shipping on all orders over $50. Unopened products can be returned within 30 days for a full refund.
+                  Complimentary standard shipping on all orders over ₹4,000. Unopened products can be returned within 30 days for a full refund.
                 </div>
               </details>
             </div>
@@ -232,7 +232,7 @@ export const ProductDetails: React.FC = () => {
             <a href="#contact" className={listingStyles.footerLink} onClick={(e) => e.preventDefault()}>Contact Us</a>
           </div>
           <div className={listingStyles.footerCopy}>
-            © 2024 AURA. All rights reserved.
+            © 2026 AURA. All rights reserved.
           </div>
         </div>
       </footer>

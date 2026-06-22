@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../hooks/useCart';
 import { formatPrice } from '../utils/formatPrice';
+import { RAZORPAY_KEY_ID } from '../data/constants';
 import styles from './CartDrawer.module.scss';
+
+// Dynamically load Razorpay SDK
+const loadRazorpayScript = (): Promise<boolean> => {
+  return new Promise((resolve) => {
+    if ((window as any).Razorpay) {
+      resolve(true);
+      return;
+    }
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
 
 export const CartDrawer: React.FC = () => {
   const { 
     items, 
     cartOpen, 
     setCartOpen, 
-    updateQty 
+    updateQty,
+    clearCart
   } = useCart();
+
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   // Calculate subtotal
   const subtotal = items.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
@@ -17,6 +36,58 @@ export const CartDrawer: React.FC = () => {
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       setCartOpen(false);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (checkoutLoading || items.length === 0) return;
+    setCheckoutLoading(true);
+
+    try {
+      const scriptLoaded = await loadRazorpayScript();
+      if (!scriptLoaded) {
+        alert("Failed to load Razorpay Checkout SDK. Please check your internet connection.");
+        setCheckoutLoading(false);
+        return;
+      }
+
+      // Convert subtotal to INR paise (price * 80 INR per USD * 100 paise per INR)
+      const amountInPaise = Math.round(subtotal * 80 * 100);
+
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: amountInPaise,
+        currency: "INR",
+        name: "AURA Skincare",
+        description: "Your Organic Botanicals Order",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCQjOXRvzw6fTOOQnZ27134H92SjoI5lZ3MGcXR9ncbtaa_tBgCrAwUmDRyJTtsXlbpKOOG1pXpB6KGTkthRwYTSCaCl4kvrbwUFcL_8bgeA78MsHAfsGiLyW2dE8YRWeuxg_4Q_Z1GgjUNxv2eMEdzhlCPo6dixx2yeEHmgyxXKCa9fjK8ya7jCRta7gSTujxyuHxf5-4btdgsvVRMZ_wsrtpnkatGjWNRYMe_dLAixXAE7Jsi80OquYg1EbOYCsYuXSK0_-P8zA",
+        handler: function (response: any) {
+          alert(`Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`);
+          clearCart();
+          setCartOpen(false);
+        },
+        prefill: {
+          name: "Aura Customer",
+          email: "customer@auraskincare.in",
+          contact: "9999999999"
+        },
+        theme: {
+          color: "#6b7c65" // AURA Brand Green
+        },
+        modal: {
+          ondismiss: function() {
+            setCheckoutLoading(false);
+          }
+        }
+      };
+
+      const rzp = new (window as any).Razorpay(options);
+      rzp.open();
+    } catch (err) {
+      console.error("Checkout initialization failed:", err);
+      alert("Something went wrong during checkout. Please try again.");
+    } finally {
+      setCheckoutLoading(false);
     }
   };
 
@@ -118,14 +189,18 @@ export const CartDrawer: React.FC = () => {
               <span>{formatPrice(subtotal)}</span>
             </div>
             
-            <button className={styles.checkoutButton}>
-              Checkout Now
+            <button 
+              className={styles.checkoutButton}
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+            >
+              {checkoutLoading ? 'Opening Secure Checkout...' : 'Checkout Now'}
               <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
                 arrow_right_alt
               </span>
             </button>
             <p className={styles.taxesNote}>
-              Taxes calculated at checkout
+              Secure payment processed via Razorpay
             </p>
           </div>
         )}
@@ -133,4 +208,5 @@ export const CartDrawer: React.FC = () => {
     </>
   );
 };
+
 export default CartDrawer;
