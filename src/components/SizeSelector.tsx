@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Variant } from '../types';
+import SizeGuideModal from './SizeGuideModal';
 import styles from './SizeSelector.module.scss';
 
 interface SizeSelectorProps {
@@ -15,6 +16,8 @@ export const SizeSelector: React.FC<SizeSelectorProps> = ({
   selectedSize,
   onChange
 }) => {
+  const [isGuideOpen, setIsGuideOpen] = useState(false);
+
   // Filter variants by the currently selected color to show correct stock states for each size
   const variantsForColour = variants.filter(
     (v) => v.colour.toLowerCase() === selectedColour.toLowerCase()
@@ -27,10 +30,18 @@ export const SizeSelector: React.FC<SizeSelectorProps> = ({
     <div className={styles.container}>
       <div className={styles.header}>
         <span className={styles.title}>Size</span>
-        <a href="#size-guide" className={styles.guideLink} onClick={(e) => e.preventDefault()}>
+        <button 
+          className={styles.guideLink} 
+          onClick={() => setIsGuideOpen(true)}
+          type="button"
+        >
           Size Guide
-        </a>
+        </button>
       </div>
+
+      {isGuideOpen && (
+        <SizeGuideModal onClose={() => setIsGuideOpen(false)} />
+      )}
 
       <div className={styles.list}>
         {sizes.map((size) => {
