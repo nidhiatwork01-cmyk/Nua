@@ -31,7 +31,7 @@ export const InfoPage: React.FC<InfoPageProps> = ({ title, description }) => {
             <a href="#" className={styles.footerLink}>Contact Us</a>
           </div>
           <div className={styles.footerCopy}>
-            © 2024 AURA. All rights reserved.
+            © 2026 AURA. All rights reserved.
           </div>
         </div>
       </footer>
