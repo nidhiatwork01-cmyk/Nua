@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import ProductListing from '../pages/ProductListing';
 import ProductDetails from '../pages/ProductDetails';
 import InfoPage from '../pages/InfoPage';
+import Journal from '../pages/Journal';
+import OurStory from '../pages/OurStory';
 
 export const router = createBrowserRouter([
   {
@@ -18,11 +20,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/journal',
-    element: <InfoPage title="Journal" description="Read our latest notes on holistic wellness, skincare science, and ingredient sourcing." />
+    element: <Journal />
   },
   {
     path: '/our-story',
-    element: <InfoPage title="Our Story" description="Rooted in nature, driven by intention. Learn about our commitment to clean skincare rituals." />
+    element: <OurStory />
   },
   {
     path: '*',

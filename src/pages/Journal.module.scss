@@ -1,0 +1,376 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.main {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-gutter;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    padding: $spacing-lg $spacing-margin-mobile;
+  }
+}
+
+// Journal Header
+.header {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+}
+
+.title {
+  font-family: $font-family-display;
+  font-size: 48px;
+  font-weight: 700;
+  color: $color-text;
+  margin-top: 0;
+  margin-bottom: $spacing-sm;
+
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+}
+
+.subtitle {
+  font-family: $font-family-body;
+  font-size: 18px;
+  color: $color-text-variant;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+// Featured Article
+.featuredSection {
+  margin-bottom: $spacing-xl;
+
+  @media (max-width: 768px) {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.featuredLink {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 716px;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+
+  @media (max-width: 768px) {
+    height: 512px;
+  }
+
+  &:hover {
+    .featuredImage {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.featuredImageWrapper {
+  width: 100%;
+  height: 100%;
+  background-color: $color-surface-container;
+}
+
+.featuredImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featuredGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
+}
+
+.featuredContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: $spacing-md;
+  }
+}
+
+.featuredLabel {
+  font-family: $font-family-body;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffdadc; // light coral color matching primary-fixed
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $spacing-xs;
+  opacity: 0.95;
+}
+
+.featuredTitle {
+  font-family: $font-family-display;
+  font-size: 40px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: $spacing-md;
+  line-height: 1.2;
+  max-width: 750px;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
+}
+
+.readStoryLink {
+  font-family: $font-family-body;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s ease;
+
+  span {
+    font-size: 18px;
+  }
+
+  &:hover {
+    color: $color-primary-container;
+  }
+}
+
+// Article Grid
+.gridSection {
+  margin-bottom: $spacing-xl;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacing-gutter;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.articleCard {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  &:hover {
+    .cardImage {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.largeCard {
+  grid-column: span 8;
+}
+
+.smallCard {
+  grid-column: span 4;
+}
+
+.cardImageLink {
+  display: block;
+  width: 100%;
+}
+
+.cardImageWrapper {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba($color-outline-variant, 0.3);
+  background-color: $color-surface-container-low;
+
+  .largeCard & {
+    height: 400px;
+    @media (max-width: 768px) {
+      height: 250px;
+    }
+  }
+
+  .smallCard & {
+    height: 250px;
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cardLabel {
+  font-family: $font-family-body;
+  font-size: 12px;
+  font-weight: 600;
+  color: $color-primary; // matching Tailwind primary-container equivalent
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.cardTitle {
+  font-family: $font-family-display;
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 8px;
+  line-height: 1.3;
+
+  .smallCard & {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.cardTitleLink {
+  color: $color-text;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.cardExcerpt {
+  font-family: $font-family-body;
+  font-size: 15px;
+  color: $color-text-variant;
+  line-height: 1.5;
+  margin-top: 0;
+  margin-bottom: $spacing-sm;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreBtn {
+  font-family: $font-family-body;
+  font-size: 14px;
+  font-weight: 500;
+  color: $color-secondary;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+
+  span {
+    font-size: 18px;
+  }
+
+  &:hover {
+    color: $color-secondary-alt;
+  }
+}
+
+// Load More
+.loadMoreWrapper {
+  text-align: center;
+  margin-top: $spacing-lg;
+}
+
+.loadMoreBtn {
+  background-color: transparent;
+  border: 1px solid $color-outline-variant;
+  color: $color-primary;
+  padding: $spacing-sm $spacing-md;
+  border-radius: 9999px;
+  font-family: $font-family-body;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $color-surface-container-low;
+  }
+}
+
+// Global Footer
+.footer {
+  background-color: $color-surface-container-high;
+  width: 100%;
+  margin-top: auto;
+  border-top: 1px solid rgba($color-outline-variant, 0.3);
+}
+
+.footerContainer {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-gutter;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footerLogo {
+  font-family: $font-family-display;
+  font-size: 24px;
+  color: $color-primary;
+}
+
+.footerLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-md;
+}
+
+.footerLink {
+  color: $color-text-variant;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 14px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-secondary;
+  }
+}
+
+.footerCopy {
+  color: $color-text-variant;
+  font-size: 13px;
+  opacity: 0.8;
+  text-align: center;
+}
