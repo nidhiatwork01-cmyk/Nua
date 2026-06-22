@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import SkeletonCard from '../components/SkeletonCard';
@@ -11,9 +12,23 @@ export const ProductListing: React.FC = () => {
   // Fetch products from Fake Store API (mapped to skincare)
   const { products, loading, error } = useProducts();
   const { toasts, removeToast } = useCart();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search') || '';
 
-  // Restrict to the 6 core AURA/Nua skincare items matching the design mockup exactly
-  const filteredProducts = products.filter((p) => p.id >= 1 && p.id <= 6);
+  // Restrict to the 6 core AURA/Nua skincare items matching the design mockup exactly and apply search query
+  const filteredProducts = products.filter((p) => {
+    const matchesId = p.id >= 1 && p.id <= 6;
+    if (!matchesId) return false;
+
+    if (!searchQuery.trim()) return true;
+
+    const query = searchQuery.toLowerCase().trim();
+    return (
+      p.title.toLowerCase().includes(query) ||
+      (p.description && p.description.toLowerCase().includes(query)) ||
+      (p.category && p.category.toLowerCase().includes(query))
+    );
+  });
 
   return (
     <>
@@ -45,6 +60,17 @@ export const ProductListing: React.FC = () => {
               Try Again
             </button>
           </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className={styles.emptyState}>
+            <span className={`material-symbols-outlined ${styles.emptyIcon}`}>
+              search_off
+            </span>
+            <h3>No formulas found</h3>
+            <p>We couldn't find any products matching "{searchQuery}". Please try another search term.</p>
+            <button className={styles.clearSearchButton} onClick={() => setSearchParams({})}>
+              Clear Search
+            </button>
+          </div>
         ) : (
           <div className={styles.grid}>
             {filteredProducts.map((product) => (
@@ -65,7 +91,7 @@ export const ProductListing: React.FC = () => {
             <a href="#contact" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Contact Us</a>
           </div>
           <div className={styles.footerCopy}>
-            © 2024 AURA. All rights reserved.
+            © 2026 AURA. All rights reserved.
           </div>
         </div>
       </footer>

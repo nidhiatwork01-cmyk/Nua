@@ -35,7 +35,6 @@
   }
 }
 
-
 .logo {
   font-family: $font-family-display;
   font-size: 28px;
@@ -63,6 +62,11 @@
   color: $color-primary;
   cursor: pointer;
   padding: $spacing-xs;
+  transition: opacity 0.2s;
+
+  &:active {
+    opacity: 0.7;
+  }
 
   @media (max-width: 767px) {
     display: block;
@@ -87,6 +91,7 @@
   padding-bottom: 2px;
   border-bottom: 2px solid transparent;
   transition: $transition-default;
+  text-decoration: none;
 
   &:hover {
     color: $color-primary;
@@ -132,6 +137,11 @@
   }
 }
 
+.searchActiveBtn {
+  color: $color-primary;
+  background-color: rgba($color-primary, 0.05);
+}
+
 .badge {
   position: absolute;
   top: -2px;
@@ -165,5 +175,185 @@
 
   @media (min-width: 768px) {
     height: 72px;
+  }
+}
+
+// ─── Search Overlay Styles ───────────────────────────────────────────
+
+.searchOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 $spacing-gutter;
+  z-index: 60;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  @media (max-width: 767px) {
+    padding: 0 $spacing-margin-mobile;
+  }
+}
+
+.searchOverlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.searchContainer {
+  width: 100%;
+  max-width: $container-max-width;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchIconInside {
+  color: $color-text-variant;
+  font-size: 22px;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: $font-family-body;
+  font-size: 16px;
+  color: $color-text;
+  padding: 8px 0;
+
+  &::placeholder {
+    color: rgba($color-text-variant, 0.6);
+  }
+}
+
+.closeSearchButton {
+  background: none;
+  border: none;
+  color: $color-text-variant;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    color: $color-primary;
+    background-color: rgba($color-primary, 0.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// ─── Mobile Menu Drawer Styles ───────────────────────────────────────────
+
+.mobileMenuBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.backdropActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobileMenuDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  max-width: 85%;
+  background-color: $color-background;
+  z-index: 101;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.drawerLogo {
+  font-family: $font-family-display;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: $color-primary;
+}
+
+.closeDrawerButton {
+  background: none;
+  border: none;
+  color: $color-text-variant;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.drawerLink {
+  font-family: $font-family-body;
+  font-size: 18px;
+  color: $color-text-variant;
+  text-decoration: none;
+  transition: color 0.2s, padding-left 0.2s;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba($color-outline-variant, 0.2);
+
+  &:hover {
+    color: $color-primary;
+    padding-left: 4px;
+  }
+
+  &.active {
+    color: $color-primary;
+    font-weight: 600;
+    border-bottom: 2px solid $color-primary;
   }
 }
