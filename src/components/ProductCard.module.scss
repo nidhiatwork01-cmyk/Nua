@@ -54,6 +54,44 @@
   backdrop-filter: none;
 }
 
+.wishlistButton {
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-variant;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: scale(1.08);
+    background-color: #ffffff;
+    color: $color-primary;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &.inWishlist {
+    color: #d17a7c;
+  }
+
+  span {
+    font-size: 19px;
+  }
+}
+
 .quickAddButton {
   position: absolute;
   bottom: $spacing-md;

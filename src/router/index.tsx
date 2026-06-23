@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ProductListing from '../pages/ProductListing';
 import ProductDetails from '../pages/ProductDetails';
-import Journal from '../pages/Journal';
 import OurStory from '../pages/OurStory';
+import Wishlist from '../pages/Wishlist';
 
 export const router = createBrowserRouter([
   {
@@ -18,12 +18,12 @@ export const router = createBrowserRouter([
     element: <ProductDetails />
   },
   {
-    path: '/journal',
-    element: <Journal />
-  },
-  {
     path: '/our-story',
     element: <OurStory />
+  },
+  {
+    path: '/wishlist',
+    element: <Wishlist />
   },
   {
     path: '*',

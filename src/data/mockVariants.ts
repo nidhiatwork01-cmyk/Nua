@@ -171,10 +171,42 @@ export const mapFakeStoreProduct = (raw: any): Product => {
   const id = raw.id;
   const overrides = PRODUCT_OVERRIDES[id] || {};
   
-  // Fallback for remaining IDs (10 to 20)
-  const defaultTitle = `Botanical ${raw.category.replace("'", '')} Care`;
-  const defaultCategory = 'Wellness';
-  const defaultImage = raw.image;
+  // Curated list of 11 unique high-resolution skincare images for fallback (IDs 10-20)
+  const fallbackSkincareImages = [
+    'https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?auto=format&fit=crop&w=600&h=600&q=80', // Cream jar in warm light
+    'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&h=600&q=80', // Skincare bottles group
+    'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&h=600&q=80', // Serum dropper
+    'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=600&h=600&q=80', // Cream jar leaf
+    'https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=600&h=600&q=80', // Glass bottle wood cap
+    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&h=600&q=80', // Masks & bottles
+    'https://images.unsplash.com/photo-1617897903246-719242758050?auto=format&fit=crop&w=600&h=600&q=80', // Clay mask
+    'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&h=600&q=80', // Bottle plant branch
+    'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&h=600&q=80', // Cosmetic flatlay
+    'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&h=600&q=80', // Blush / Makeup palette
+    'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&h=600&q=80', // Cosmetics and makeup brushes
+  ];
+
+  // Curated list of 11 unique skincare titles for fallback (IDs 10-20)
+  const fallbackSkincareTitles = [
+    'Soothing Botanical Cleanser',
+    'Mineral Infused Elixir',
+    'Active Hydration Face Mist',
+    'Purifying Charcoal Clay Mask',
+    'Radiance Facial Nectar',
+    'Exfoliating Enzyme Powder',
+    'Centella Calming Gel Cream',
+    'Brightening Vitamin C Complex',
+    'Rosewater Pore Balancing Spray',
+    'Nourishing Avocado Eye Balm',
+    'Firming Peptide Concentrate'
+  ];
+
+  // Index mapping for IDs 10 to 20
+  const index = Math.max(0, id - 10) % fallbackSkincareImages.length;
+  
+  const defaultImage = fallbackSkincareImages[index];
+  const defaultTitle = fallbackSkincareTitles[index];
+  const defaultCategory = 'Skincare';
 
   return {
     id: raw.id,

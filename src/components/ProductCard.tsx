@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { Product } from '../types';
 import { getProductVariants } from '../data/mockVariants';
 import { useCart } from '../hooks/useCart';
+import { useWishlist } from '../hooks/useWishlist';
 import { formatPrice } from '../utils/formatPrice';
 import styles from './ProductCard.module.scss';
 
@@ -13,6 +14,9 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const navigate = useNavigate();
   const { addItem, isAdding } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  
+  const inWishlist = isInWishlist(product.id);
   
   // Get variants for this product
   const variants = getProductVariants(product.id);
@@ -53,6 +57,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         {product.badge && (
           <span className={styles.badge}>{product.badge}</span>
         )}
+
+        <button 
+          className={`${styles.wishlistButton} ${inWishlist ? styles.inWishlist : ''}`}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleWishlist(product);
+          }}
+          aria-label={inWishlist ? `Remove ${product.title} from wishlist` : `Add ${product.title} to wishlist`}
+        >
+          <span className="material-symbols-outlined">
+            {inWishlist ? 'favorite' : 'favorite_border'}
+          </span>
+        </button>
         
         <button 
           className={styles.quickAddButton} 

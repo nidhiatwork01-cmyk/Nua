@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useCart } from '../hooks/useCart';
+import { useWishlist } from '../hooks/useWishlist';
 import styles from './Navbar.module.scss';
 
 export const Navbar: React.FC = () => {
   const { items, setCartOpen } = useCart();
+  const { wishlist } = useWishlist();
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -123,12 +125,6 @@ export const Navbar: React.FC = () => {
               Shop
             </Link>
             <Link 
-              to="/journal" 
-              className={`${styles.navLink} ${location.pathname === '/journal' ? styles.active : ''}`}
-            >
-              Journal
-            </Link>
-            <Link 
               to="/our-story" 
               className={`${styles.navLink} ${location.pathname === '/our-story' ? styles.active : ''}`}
             >
@@ -144,6 +140,18 @@ export const Navbar: React.FC = () => {
               onClick={() => setSearchOpen(true)}
             >
               <span className="material-symbols-outlined">search</span>
+            </button>
+            <button 
+              className={`${styles.iconButton} ${location.pathname === '/wishlist' ? styles.wishlistActiveBtn : ''}`} 
+              aria-label="View wishlist"
+              onClick={() => navigate('/wishlist')}
+            >
+              <span className="material-symbols-outlined">
+                {wishlist.length > 0 ? 'favorite' : 'favorite_border'}
+              </span>
+              {wishlist.length > 0 && (
+                <span className={styles.wishlistBadge}>{wishlist.length}</span>
+              )}
             </button>
             <button 
               className={styles.iconButton} 
@@ -200,18 +208,18 @@ export const Navbar: React.FC = () => {
             Shop
           </Link>
           <Link 
-            to="/journal" 
-            className={`${styles.drawerLink} ${location.pathname === '/journal' ? styles.active : ''}`}
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Journal
-          </Link>
-          <Link 
             to="/our-story" 
             className={`${styles.drawerLink} ${location.pathname === '/our-story' ? styles.active : ''}`}
             onClick={() => setMobileMenuOpen(false)}
           >
             Our Story
+          </Link>
+          <Link 
+            to="/wishlist" 
+            className={`${styles.drawerLink} ${location.pathname === '/wishlist' ? styles.active : ''}`}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Wishlist
           </Link>
         </div>
       </div>

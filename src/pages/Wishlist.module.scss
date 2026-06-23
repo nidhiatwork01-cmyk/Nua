@@ -1,0 +1,127 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.main {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 40px $spacing-gutter 60px;
+  min-height: calc(100vh - 400px); // Keep footer pushed down when wishlist is empty
+
+  @media (max-width: 767px) {
+    padding: $spacing-md $spacing-margin-mobile;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 48px;
+  margin-top: $spacing-sm;
+
+  @media (max-width: 767px) {
+    margin-bottom: 32px;
+    margin-top: 0;
+  }
+}
+
+.title {
+  font-family: $font-family-display;
+  font-size: 36px;
+  font-weight: 700;
+  color: $color-primary;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    font-size: 44px;
+  }
+}
+
+.description {
+  font-family: $font-family-body;
+  font-size: 15px;
+  color: $color-text-variant;
+  max-width: 560px;
+  line-height: 1.6;
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  text-align: center;
+  color: $color-text-variant;
+  gap: 12px;
+
+  .emptyIcon {
+    font-size: 64px;
+    color: #e5b9ba; // soft blush shade for empty heart outline
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    font-family: $font-family-display;
+    font-size: 24px;
+    font-weight: 600;
+    color: $color-primary;
+    margin: 0;
+  }
+
+  p {
+    font-family: $font-family-body;
+    font-size: 15px;
+    max-width: 420px;
+    line-height: 1.5;
+    margin: 0 0 16px;
+  }
+
+  .exploreButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-family-body;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: $transition-default;
+    outline: none;
+    background-color: $color-primary;
+    color: white;
+    padding: 12px 32px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba($color-primary, 0.15);
+
+    &:hover {
+      background-color: lighten($color-primary, 5%);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}

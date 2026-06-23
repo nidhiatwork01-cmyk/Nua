@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import CartDrawer from '../components/CartDrawer';
 import styles from './OurStory.module.scss';
 
@@ -231,20 +232,7 @@ export const OurStory: React.FC = () => {
       </main>
 
       {/* Global Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <div className={styles.footerLogo}>AURA</div>
-          <div className={styles.footerLinks}>
-            <a href="#privacy" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Privacy Policy</a>
-            <a href="#terms" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Terms of Service</a>
-            <a href="#shipping" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Shipping & Returns</a>
-            <a href="#contact" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Contact Us</a>
-          </div>
-          <div className={styles.footerCopy}>
-            © 2026 AURA Skincare. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       <CartDrawer />
     </>

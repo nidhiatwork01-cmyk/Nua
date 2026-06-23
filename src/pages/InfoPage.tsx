@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import CartDrawer from '../components/CartDrawer';
 import styles from './ProductListing.module.scss'; // Reuse layout styles
 
@@ -21,20 +22,7 @@ export const InfoPage: React.FC<InfoPageProps> = ({ title, description }) => {
         </p>
       </main>
       
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <div className={styles.footerLogo}>AURA</div>
-          <div className={styles.footerLinks}>
-            <a href="#" className={styles.footerLink}>Privacy Policy</a>
-            <a href="#" className={styles.footerLink}>Terms of Service</a>
-            <a href="#" className={styles.footerLink}>Shipping & Returns</a>
-            <a href="#" className={styles.footerLink}>Contact Us</a>
-          </div>
-          <div className={styles.footerCopy}>
-            © 2026 AURA. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
       
       <CartDrawer />
     </>

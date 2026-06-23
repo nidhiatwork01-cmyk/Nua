@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import CartDrawer from '../components/CartDrawer';
 import ImageGallery from '../components/ImageGallery';
 import SizeSelector from '../components/SizeSelector';
@@ -60,8 +61,7 @@ export const ProductDetails: React.FC = () => {
     );
   }
 
-  // Define unique colors for the swatches list
-  const colors = COLOR_MAP;
+
 
   // Key used to track async cart operations for the selected variant
   const currentItemKey = `${product.id}-${selectedSize}-${selectedColour}`;
@@ -119,26 +119,7 @@ export const ProductDetails: React.FC = () => {
             {/* Description */}
             <p className={styles.description}>{product.description}</p>
 
-            {/* Color Swatch Picker */}
-            <div className={styles.swatchesSection}>
-              <div className={styles.swatchLabel}>
-                Hue: <span className={styles.activeSwatchName}>{selectedColour}</span>
-              </div>
-              <div className={styles.swatchesList}>
-                {colors.map((color) => {
-                  const isActive = selectedColour.toLowerCase() === color.name.toLowerCase();
-                  return (
-                    <button
-                      key={color.name}
-                      className={`${styles.swatchButton} ${isActive ? styles.activeSwatch : ''}`}
-                      style={{ backgroundColor: color.hex }}
-                      onClick={() => setSelectedColour(color.name)}
-                      aria-label={`Select color ${color.name}`}
-                    />
-                  );
-                })}
-              </div>
-            </div>
+
 
             {/* Size Selector component */}
             <SizeSelector
@@ -222,20 +203,7 @@ export const ProductDetails: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className={listingStyles.footer}>
-        <div className={listingStyles.footerContainer}>
-          <div className={listingStyles.footerLogo}>AURA</div>
-          <div className={listingStyles.footerLinks}>
-            <a href="#privacy" className={listingStyles.footerLink} onClick={(e) => e.preventDefault()}>Privacy Policy</a>
-            <a href="#terms" className={listingStyles.footerLink} onClick={(e) => e.preventDefault()}>Terms of Service</a>
-            <a href="#shipping" className={listingStyles.footerLink} onClick={(e) => e.preventDefault()}>Shipping & Returns</a>
-            <a href="#contact" className={listingStyles.footerLink} onClick={(e) => e.preventDefault()}>Contact Us</a>
-          </div>
-          <div className={listingStyles.footerCopy}>
-            © 2026 AURA. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Drawer */}
       <CartDrawer />

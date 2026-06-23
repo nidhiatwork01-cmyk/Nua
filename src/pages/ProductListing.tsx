@@ -2,6 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
+import Footer from '../components/Footer';
 import SkeletonCard from '../components/SkeletonCard';
 import CartDrawer from '../components/CartDrawer';
 import { useProducts } from '../hooks/useProducts';
@@ -15,11 +16,8 @@ export const ProductListing: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
 
-  // Restrict to the 6 core AURA/Nua skincare items matching the design mockup exactly and apply search query
+  // Filter products returned from the Fake Store API by search query
   const filteredProducts = products.filter((p) => {
-    const matchesId = p.id >= 1 && p.id <= 6;
-    if (!matchesId) return false;
-
     if (!searchQuery.trim()) return true;
 
     const query = searchQuery.toLowerCase().trim();
@@ -81,20 +79,7 @@ export const ProductListing: React.FC = () => {
       </main>
 
       {/* Global Footer */}
-      <footer className={styles.footer}>
-        <div className={styles.footerContainer}>
-          <div className={styles.footerLogo}>AURA</div>
-          <div className={styles.footerLinks}>
-            <a href="#privacy" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Privacy Policy</a>
-            <a href="#terms" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Terms of Service</a>
-            <a href="#shipping" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Shipping & Returns</a>
-            <a href="#contact" className={styles.footerLink} onClick={(e) => e.preventDefault()}>Contact Us</a>
-          </div>
-          <div className={styles.footerCopy}>
-            © 2026 AURA. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Cart Drawer */}
       <CartDrawer />
