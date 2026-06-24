@@ -1,5 +1,8 @@
 # Architectural Decisions & Retrospective
 
+**Live Demo:** [nua-eight-rosy.vercel.app](https://nua-eight-rosy.vercel.app/)
+
+
 ## The Big Decision: React Context vs. an External State Manager
 
 The cart and wishlist are the two pieces of global state that cross component boundaries — the Navbar badge, ProductCard heart overlays, the CartDrawer, and the ProductDetails CTA all read or write the same data. I had to choose how to wire them up.
