@@ -8,10 +8,9 @@ import SizeSelector from '../components/SizeSelector';
 import { useProduct } from '../hooks/useProducts';
 import { useVariantUrl } from '../hooks/useVariantUrl';
 import { useCart } from '../hooks/useCart';
-import { getProductVariants, COLOR_MAP } from '../data/mockVariants';
+import { getProductVariants } from '../data/mockVariants';
 import { formatPrice } from '../utils/formatPrice';
 import styles from './ProductDetails.module.scss';
-import listingStyles from './ProductListing.module.scss'; // Reuse footer styles
 
 export const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,7 +31,6 @@ export const ProductDetails: React.FC = () => {
     selectedColour,
     selectedSize,
     selectedVariant,
-    setSelectedColour,
     setSelectedSize
   } = useVariantUrl(variants);
 

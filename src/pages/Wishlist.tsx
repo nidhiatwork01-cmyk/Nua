@@ -7,7 +7,6 @@ import CartDrawer from '../components/CartDrawer';
 import { useWishlist } from '../hooks/useWishlist';
 import { useCart } from '../hooks/useCart';
 import styles from './Wishlist.module.scss';
-import listingStyles from './ProductListing.module.scss';
 
 export const Wishlist: React.FC = () => {
   const { wishlist } = useWishlist();
