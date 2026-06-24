@@ -158,6 +158,7 @@ export const CartDrawer: React.FC = () => {
                       <button 
                         className={styles.qtyButton}
                         onClick={() => updateQty(item.key, item.quantity + 1)}
+                        disabled={item.quantity >= Math.max(1, Math.min(10, item.variant.stockCount))}
                         aria-label="Increase quantity"
                       >
                         <span className="material-symbols-outlined" style={{ fontSize: '14px' }}>add</span>

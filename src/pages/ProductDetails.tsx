@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -33,6 +33,16 @@ export const ProductDetails: React.FC = () => {
     selectedVariant,
     setSelectedSize
   } = useVariantUrl(variants);
+
+  // Cap quantity if it exceeds variant stock or global limit
+  useEffect(() => {
+    if (selectedVariant) {
+      const maxQty = Math.max(1, Math.min(10, selectedVariant.stockCount));
+      if (quantity > maxQty) {
+        setQuantity(maxQty);
+      }
+    }
+  }, [selectedVariant, quantity]);
 
   if (loading) {
     return (
@@ -140,7 +150,11 @@ export const ProductDetails: React.FC = () => {
                 <span className={styles.qtyValue}>{quantity}</span>
                 <button
                   className={styles.qtyStepperBtn}
-                  onClick={() => setQuantity((q) => q + 1)}
+                  onClick={() => {
+                    const maxQty = selectedVariant ? Math.min(10, selectedVariant.stockCount) : 10;
+                    setQuantity((q) => Math.min(maxQty, q + 1));
+                  }}
+                  disabled={selectedVariant ? quantity >= Math.max(1, Math.min(10, selectedVariant.stockCount)) : false}
                   aria-label="Increase quantity"
                 >
                   <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>add</span>
