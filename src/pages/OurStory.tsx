@@ -199,10 +199,7 @@ export const OurStory: React.FC = () => {
             <p className={styles.promiseParagraph}>
               Our extraction methods are painfully slow by industry standards. We utilize cold-press and ultra-maceration techniques that preserve the delicate phytonutrients within each plant cell. It takes time, patience, and a deep reverence for the source material to capture the full spectrum of nature's healing properties.
             </p>
-            <div className={styles.founderBlock}>
-              <span className={styles.founderName}>Evelyn Hart</span>
-              <span className={styles.founderTitle}>Founder & Master Formulator</span>
-            </div>
+
           </div>
         </section>
 

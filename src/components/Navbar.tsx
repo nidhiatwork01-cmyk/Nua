@@ -68,10 +68,11 @@ export const Navbar: React.FC = () => {
     setSearchVal(val);
     
     const isOnShopPage = location.pathname === '/' || location.pathname === '/shop';
+    const isOnWishlistPage = location.pathname === '/wishlist';
     
     if (val.trim()) {
-      if (isOnShopPage) {
-        // If on shop page, just update url search params
+      if (isOnShopPage || isOnWishlistPage) {
+        // If on shop or wishlist page, just update url search params
         setSearchParams({ search: val });
       } else {
         // Redirect to shop page with search query
@@ -79,7 +80,7 @@ export const Navbar: React.FC = () => {
       }
     } else {
       // If input is empty, clear param
-      if (isOnShopPage) {
+      if (isOnShopPage || isOnWishlistPage) {
         setSearchParams({});
       } else {
         navigate('/shop');
@@ -91,9 +92,10 @@ export const Navbar: React.FC = () => {
     setSearchOpen(false);
     setSearchVal('');
     
-    // Clear search param if on shop page
+    // Clear search param if on shop or wishlist page
     const isOnShopPage = location.pathname === '/' || location.pathname === '/shop';
-    if (isOnShopPage) {
+    const isOnWishlistPage = location.pathname === '/wishlist';
+    if (isOnShopPage || isOnWishlistPage) {
       setSearchParams({});
     }
   };

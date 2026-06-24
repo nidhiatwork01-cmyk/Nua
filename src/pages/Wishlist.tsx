@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import Footer from '../components/Footer';
@@ -12,6 +12,20 @@ export const Wishlist: React.FC = () => {
   const { wishlist } = useWishlist();
   const { toasts, removeToast } = useCart();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchQuery = searchParams.get('search') || '';
+
+  // Filter wishlist items by search query
+  const filteredWishlist = wishlist.filter((p) => {
+    if (!searchQuery.trim()) return true;
+    const query = searchQuery.toLowerCase().trim();
+    return (
+      p.title.toLowerCase().includes(query) ||
+      (p.description && p.description.toLowerCase().includes(query)) ||
+      (p.category && p.category.toLowerCase().includes(query))
+    );
+  });
 
   return (
     <>
@@ -40,9 +54,20 @@ export const Wishlist: React.FC = () => {
               Explore Shop
             </button>
           </div>
+        ) : filteredWishlist.length === 0 ? (
+          <div className={styles.emptyState}>
+            <span className={`material-symbols-outlined ${styles.emptyIcon}`}>
+              search_off
+            </span>
+            <h3>No saved formulas found</h3>
+            <p>We couldn't find any products in your wishlist matching "{searchQuery}".</p>
+            <button className={styles.exploreButton} onClick={() => setSearchParams({})}>
+              Clear Search
+            </button>
+          </div>
         ) : (
           <div className={styles.grid}>
-            {wishlist.map((product) => (
+            {filteredWishlist.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
