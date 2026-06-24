@@ -224,9 +224,14 @@ export const OurStory: React.FC = () => {
             <p className={styles.reserveDescription}>
               A limited-edition of ultra-small batch solutions, born from rare botanical crops in exceptional seasons. The Reserve represents the absolute pinnacle of our dedication to uncompromising quality and botanical supremacy.
             </p>
-            <button className={styles.reserveBtn} onClick={(e) => e.preventDefault()}>
-              Explore The Reserve
-            </button>
+             <a 
+               href="https://www.westernreservedermatology.com/blogs" 
+               className={styles.reserveBtn}
+               target="_blank"
+               rel="noopener noreferrer"
+             >
+               Explore The Reserve
+             </a>
           </div>
         </section>
       </main>

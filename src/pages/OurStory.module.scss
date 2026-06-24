@@ -638,6 +638,8 @@
 }
 
 .reserveBtn {
+  display: inline-block;
+  text-decoration: none;
   background-color: #ffffff;
   color: $color-text;
   border: none;
