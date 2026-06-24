@@ -2,8 +2,6 @@
 
 A premium, high-fidelity D2C botanical skincare e-commerce storefront. Built with a focus on rich aesthetics, smooth animations, and robust real-world product engineering practices.
 
-**Live Demo:** [nua-eight-rosy.vercel.app](https://nua-eight-rosy.vercel.app/)
-
 ---
 
 ## ✦ Key Features
@@ -13,7 +11,7 @@ A premium, high-fidelity D2C botanical skincare e-commerce storefront. Built wit
 - **Seamless Cart Experience & LocalStorage:** A slide-out cart drawer with real-time subtotal calculations, product quantity adjustments, and persistence across sessions via `localStorage`.
 - **Real-World Network Simulation:** Implements a simulated **800ms API latency** and a **20% random network drop rate** on checkout actions. Provides instant visual feedback using disabled loading/spinner button states (debouncing) and custom success/error toast alerts.
 - **Scroll-Reveal Animations & Micro-Interactions:** The **Our Story** page is driven by a custom `IntersectionObserver` hook for scroll-triggered slide-ins, parallax hero zooms, quote border accents, and premium button micro-states.
-- **Figma-Matched Journal:** The **Journal** page features a grid/list viewport toggle, category filtering tags, elegant article layouts, and a newsletter subscription form.
+
 
 ---
 
@@ -64,10 +62,4 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 npm run build
 ```
 Creates an optimized output folder (`dist`) ready to be deployed.
-
----
-
-## ✦ Deployment
-
-See the [Vercel Deployment Guide](file:///c:/AllMyProjects/nua/DEPLOYMENT.md) for step-by-step instructions on deploying the application to Vercel with smooth client-side routing support.
 
