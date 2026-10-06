@@ -221,3 +221,31 @@ export const mapFakeStoreProduct = (raw: any): Product => {
     badge: overrides.badge
   };
 };
+
+/**
+ * Returns full fallback catalog (20 products) when external Fake Store API is unavailable or blocked by Cloudflare
+ */
+export const getAllMockProducts = (): Product[] => {
+  return Array.from({ length: 20 }, (_, i) => {
+    const id = i + 1;
+    return mapFakeStoreProduct({
+      id,
+      title: `Skincare Product ${id}`,
+      price: 35 + (id * 3),
+      description: 'A luxurious botanical formula enriched with nourishing minerals and plant actives.',
+      category: 'Skincare',
+      rating: { rate: 4.5 + ((id % 4) * 0.1), count: 85 + (id * 12) }
+    });
+  });
+};
+
+export const getMockProductById = (id: number): Product => {
+  return mapFakeStoreProduct({
+    id,
+    title: `Skincare Product ${id}`,
+    price: 35 + (id * 3),
+    description: 'A luxurious botanical formula enriched with nourishing minerals and plant actives.',
+    category: 'Skincare',
+    rating: { rate: 4.8, count: 120 }
+  });
+};
